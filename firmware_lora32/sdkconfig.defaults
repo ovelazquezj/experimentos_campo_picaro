@@ -1,0 +1,71 @@
+# ============================================================================
+#  sdkconfig.defaults  -  valores por defecto de la sonda T3 (ESP32 clasico)
+# ----------------------------------------------------------------------------
+#  Estos valores se aplican al generar el sdkconfig la primera vez. Puedes
+#  cambiarlos con `idf.py menuconfig`. Doc: menuconfig / project configuration:
+#  https://docs.espressif.com/projects/esp-idf/en/v5.5.2/esp32s3/api-reference/kconfig.html
+# ============================================================================
+
+# --- Target y flash (el ESP32-PICO-D4 de la T3 v1.6.1 trae 4 MB de flash) ---
+CONFIG_IDF_TARGET="esp32"
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+CONFIG_ESPTOOLPY_FLASHMODE_DIO=y
+CONFIG_ESPTOOLPY_FLASHFREQ_80M=y
+
+# --- Tabla de particiones personalizada (ver partitions.csv) ---
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+
+# --- Consola serie a 115200 (igual que el resto del curso) ---
+CONFIG_ESP_CONSOLE_UART_DEFAULT=y
+CONFIG_ESP_CONSOLE_UART_BAUDRATE=115200
+
+# --- Tarea principal con pila holgada (RadioLib + drivers) ---
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192
+
+# --- FreeRTOS a 1 kHz para timing fino del planificador LoRaWAN ---
+CONFIG_FREERTOS_HZ=1000
+
+# --- FATFS con nombres largos (para el log CSV en la microSD, Fase 5) ---
+CONFIG_FATFS_LFN_HEAP=y
+CONFIG_FATFS_MAX_LFN=255
+
+# Sin PSRAM: el ESP32-PICO-D4 no la tiene. Todo cabe en la SRAM interna.
+
+# --- v2: BLE (NimBLE) para el control de modo desde la app ------------------
+#  La sonda es SOLO periferico (anuncia y acepta comandos): nunca escanea ni
+#  se conecta a nadie. Desactivar los roles de central/observador no es cosmetica
+#  -> con la PSRAM apagada, NimBLE tiene que caber en la SRAM interna y esos
+#  roles cuestan RAM que no vamos a usar.
+CONFIG_BT_ENABLED=y
+# ESP32 clasico: el controlador soporta BR/EDR y BLE. Solo BLE libera la RAM
+# que el controlador reservaria para Bluetooth clasico.
+CONFIG_BTDM_CTRL_MODE_BLE_ONLY=y
+CONFIG_BTDM_CTRL_MODE_BR_EDR_ONLY=n
+CONFIG_BTDM_CTRL_MODE_BTDM=n
+CONFIG_BT_NIMBLE_ENABLED=y
+CONFIG_BT_NIMBLE_ROLE_CENTRAL=n
+CONFIG_BT_NIMBLE_ROLE_OBSERVER=n
+CONFIG_BT_NIMBLE_ROLE_PERIPHERAL=y
+CONFIG_BT_NIMBLE_ROLE_BROADCASTER=y
+# Una sola conexion: solo se empareja un telefono a la vez. Ademas de ahorrar
+# RAM, elimina de raiz la pregunta "¿que pasa si dos telefonos emparejados mandan
+# comandos contradictorios?", que si no habria que responder con una politica de
+# prioridad.
+CONFIG_BT_NIMBLE_MAX_CONNECTIONS=1
+# Bonding persistente en NVS: sin esto el emparejamiento se pierde al reiniciar y
+# habria que teclear el passkey en cada arranque. Con esto, la reconexion es
+# automatica (que es medio argumento a favor de LE Secure Connections).
+CONFIG_BT_NIMBLE_NVS_PERSIST=y
+# LE Secure Connections (el acuerdo de llave va por ECDH sobre P-256).
+CONFIG_BT_NIMBLE_SM_SC=y
+# CRITICO, y no es lo mismo que la linea de arriba: sm_sc=1 en ble_hs_cfg dice
+# lo que se prefiere, pero si el codigo del emparejamiento LEGACY esta compilado
+# y el par declara no soportar Secure Connections, la pila puede negociar a la
+# baja -- y el intercambio de llaves del legacy es recuperable en pasivo. La
+# defensa real es que ese codigo no exista en el binario.
+CONFIG_BT_NIMBLE_SM_LEGACY=n
+# Telefono principal + repuesto + margen. Al llegar al cuarto, el store_status_cb
+# (ble_store_util_status_rr, en ble_control.c) desaloja al mas antiguo en vez de
+# fallar con BLE_HS_ESTORE_CAP.
+CONFIG_BT_NIMBLE_MAX_BONDS=3

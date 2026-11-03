@@ -1,0 +1,11 @@
+# Artefactos locales que NO van al repo.
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+# Secretos y estado local:
+.env
+*.db
+*.db-journal
+*.db-wal

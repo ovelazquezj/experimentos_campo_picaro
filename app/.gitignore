@@ -1,0 +1,29 @@
+# Flutter / Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Plataformas regeneradas con `flutter create .` (no se versionan aqui;
+# ver README: se generan localmente antes de compilar).
+android/
+ios/
+linux/
+macos/
+windows/
+web/
+
+# Generados por flutter_native_splash
+**/android/**/splash*
+
+# Regenerados por `flutter create` (no se versionan, como android/)
+.metadata

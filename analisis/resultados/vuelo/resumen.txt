@@ -1,0 +1,4 @@
+Corridas VUELO (D-64). Margen = SNR p5 - limite SF10 (-15 dB).
+Modelo: margen(d) = 12.8 - 20 log10(d / 15.27 km)  [cerro 2026-09-27, n=2]
+
+(sin corridas VUELO en datos_app/)

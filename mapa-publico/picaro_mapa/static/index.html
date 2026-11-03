@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SatLink 2026 · Red PiCARO</title>
+<meta name="description" content="SatLink 2026 · Red PiCARO en vivo (TecNM · Instituto Tecnológico de Pabellón de Arteaga · IEEE · IEA): datos que reportan los dispositivos LoRaWAN y calidad de señal en los gateways.">
+<meta name="theme-color" content="#1B396A">
+<link rel="icon" type="image/png" href="marca/satlink-64.png?v=20261023a">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="vendor/uPlot.min.css">
+<link rel="stylesheet" href="app.css?v=20261023a">
+</head>
+<body>
+<header class="barra">
+  <a class="logo-tecnm" href="https://www.tecnm.mx/" target="_blank" rel="noopener">
+    <img class="completo" src="marca/tecnm.png?v=20261023a" width="145" height="62" alt="Tecnológico Nacional de México">
+    <img class="engrane" src="marca/tecnm-engrane.png?v=20261023a" width="28" height="40" alt="Tecnológico Nacional de México">
+  </a>
+  <span class="separador" aria-hidden="true"></span>
+  <div class="marca">
+    <h1>SatLink 2026</h1>
+    <p>Red PiCARO · dispositivos LoRaWAN en vivo</p>
+  </div>
+  <div class="resumen" id="resumen"></div>
+  <div class="logos">
+    <a class="logo-itpa" href="https://pabellon.tecnm.mx/" target="_blank" rel="noopener">
+      <img src="marca/itpa.png?v=20261023a" width="161" height="52" alt="Instituto Tecnológico de Pabellón de Arteaga">
+    </a>
+    <img class="logo-satlink" src="marca/satlink.png?v=20261023a" width="56" height="56" alt="SatLink 2026 · Misiones espaciales">
+  </div>
+  <div class="vivo" id="vivo" data-estado="conectando"><span></span><b>Conectando…</b></div>
+  <button class="boton-lista" id="boton-lista" aria-controls="lista" aria-expanded="false">Nodos</button>
+</header>
+<div class="franja" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<main class="cuerpo">
+  <aside class="lista" id="lista" aria-label="Dispositivos por proyecto">
+    <div class="lista-cab">
+      <input id="filtro" type="search" placeholder="Buscar proyecto o nodo" aria-label="Buscar proyecto o nodo">
+    </div>
+    <div id="grupos"></div>
+    <div class="leyenda">
+      <div><i class="pto bueno"></i>Margen ≥ 10 dB</div>
+      <div><i class="pto regular"></i>5–10 dB</div>
+      <div><i class="pto malo"></i>&lt; 5 dB</div>
+      <div><i class="pto bueno atenuado"></i>Sin uplink hace más de 5 min: color atenuado</div>
+      <div><i class="pto"></i>Inactivo: más de 1 h sin uplink</div>
+      <div><i class="pto itpa"></i>Sin geolocalización: se muestra en el ITPA</div>
+      <p>Tras 24 h sin uplink el nodo sale del mapa y queda en la lista.</p>
+      <div><i class="gw-ley"></i>Gateway</div>
+      <p>Margen = SNR medido − SNR mínimo para demodular con ese SF.</p>
+    </div>
+    <section class="organizan" aria-labelledby="org-titulo">
+      <h2 id="org-titulo">Organizan</h2>
+      <a class="org tecnm" href="https://www.tecnm.mx/" target="_blank" rel="noopener"><img src="marca/tecnm.png?v=20261023a" width="562" height="240" alt="Tecnológico Nacional de México"></a>
+      <a class="org itpa" href="https://pabellon.tecnm.mx/" target="_blank" rel="noopener"><img src="marca/itpa.png?v=20261023a" width="682" height="220" alt="Instituto Tecnológico de Pabellón de Arteaga"></a>
+      <a class="org" href="https://www.ieee.org/" target="_blank" rel="noopener"><img src="marca/ieee.png?v=20261023a" width="511" height="150" alt="IEEE"></a>
+      <a class="org" href="https://www.iea.gob.mx/" target="_blank" rel="noopener"><img src="marca/iea.png?v=20261023a" width="398" height="200" alt="Instituto de Educación de Aguascalientes"></a>
+    </section>
+  </aside>
+
+  <section class="mapa-caja">
+    <div id="mapa" aria-label="Mapa de dispositivos"></div>
+    <article class="detalle" id="detalle" hidden aria-live="polite"></article>
+  </section>
+</main>
+
+<script src="vendor/leaflet.js"></script>
+<script src="vendor/uPlot.iife.min.js"></script>
+<script src="app.js?v=20261023a"></script>
+</body>
+</html>

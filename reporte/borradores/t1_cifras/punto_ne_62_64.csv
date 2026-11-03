@@ -1,0 +1,4 @@
+session_id,valida,uplinks,rssi_gw01_mediana,snr_gw01_mediana,ruido_aparente_gw01_dbm,frac_recibido_gw00,snr_mejor_mediana,snr_mejor_p10,margen_sf10_mediana_db,margen_sf10_p10_db
+62,0,27,-112.0,4.0,,1.0,4.0,0.68,19.0,15.68
+63,0,78,-110.0,6.0,-98.0,0.936,6.0,-1.0,21.0,14.0
+64,1,52,-118.0,-13.8,-105.0,0.077,-13.9,-17.0,1.1,-2.0

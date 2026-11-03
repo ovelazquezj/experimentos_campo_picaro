@@ -1,0 +1,25 @@
+# picaro-mapa — compose SEPARADO del de ChirpStack (no lo modifica).
+# Se une a la red del stack; sin `ports:` (Caddy lo alcanza como picaro-mapa:8000).
+name: picaro-mapa
+
+services:
+  mapa:
+    build: .
+    image: picaro-mapa:latest
+    container_name: picaro-mapa
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - DB_PATH=/data/mapa.db
+    volumes:
+      - mapa-data:/data
+    expose: ["8000"]
+    networks: [picaro]
+
+networks:
+  picaro:
+    external: true
+    name: picaro-chirpstack_picaro
+
+volumes:
+  mapa-data:

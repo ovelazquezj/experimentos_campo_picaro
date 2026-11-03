@@ -1,0 +1,79 @@
+name: picaro_campo
+description: "PiCARO - App de campo para operar y monitorizar la campaña de pruebas de terreno LoRaWAN."
+publish_to: "none"
+
+# La version se muestra en la pantalla "Acerca de" (ver kAppVersion en lib/config.dart,
+# que debe mantenerse en sincronia con este numero).
+version: 2.3.0+9
+
+environment:
+  sdk: ">=3.2.0 <4.0.0"
+  flutter: ">=3.16.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Cliente REST (§6 del contrato). Estable y minimalista.
+  http: ^1.2.1
+
+  # WebSocket con token por query param y reconexion propia (§7).
+  web_socket_channel: ^2.4.5
+
+  # Persistencia de URL base + token (pantalla de configuracion, §10).
+  shared_preferences: ^2.2.3
+
+  # Gestion de estado ligera (ChangeNotifier). Sin dependencias pesadas.
+  provider: ^6.1.2
+
+  # Mapa con OpenStreetMap, sin API key (§10 - pantalla Mapa).
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.1
+
+  # Descargar/compartir el CSV de una sesion (§10 - pantalla Sesiones).
+  path_provider: ^2.1.3
+  share_plus: ^7.2.2
+
+  # Control de la sonda por BLE (CONTRATO-BLE §10). Unica dependencia que
+  # necesita lib/ble/ble_client.dart: la seguridad la da LE Secure Connections
+  # (emparejamiento del sistema), asi que NO hace falta `crypto`.
+  flutter_blue_plus: ^1.32.12
+
+  # GPS del telefono (D-65): la T3 no tiene GPS y su distancia al gateway se
+  # mide desde donde esta el telefono (lib/gps/gps_telefono.dart).
+  geolocator: ^12.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+  # Generacion de iconos y splash a partir de los PNG de branding.
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icon/
+    - assets/branding/
+
+# --- Icono de la app (adaptativo en Android) --------------------------------
+# Ejecutar: dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/icon/icon.png"
+  adaptive_icon_foreground: "assets/icon/foreground.png"
+  adaptive_icon_background: "assets/icon/background.png"
+  min_sdk_android: 21
+
+# --- Splash de arranque -----------------------------------------------------
+# Ejecutar: dart run flutter_native_splash:create
+flutter_native_splash:
+  color: "#0A1730"
+  image: assets/branding/splash.png
+  android_12:
+    color: "#0A1730"
+    image: assets/branding/splash.png

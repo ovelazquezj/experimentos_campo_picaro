@@ -1,0 +1,4 @@
+grupo,sesiones,n,periodo_uplink_s,mediana_s,p25_s,p75_s,min_s,max_s,teoria_mediana_s,teoria_min_s,teoria_max_s,frac_sobre_teoria_max,enc_a_uplink_mediana_s,enc_a_uplink_rango_s,criterio_H4_A
+"Sesión 41 · CERRO16-A T-Beam, SF10, 15,2 km (válida)",41,28,8.031,9.62,7.568,11.392,4.91,22.15,9.016,5.0,13.031,0.071,4.616,-0.09-17.15,True
+"Sesiones 62–63 · VUELO-A T3, SF10, 12,3 km (fuera del conjunto válido)",62;63,34,20.02,6.08,5.732,6.385,5.55,6.62,15.01,5.0,25.02,0.0,1.081,0.55-1.62,False
+"Sesión 64 · VUELO-A T3, SF10, 12,3 km (válida)",64,37,20.02,46.19,7.86,88.14,7.0,226.94,15.01,5.0,25.02,0.676,41.195,2.00-221.94,True

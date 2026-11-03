@@ -1,0 +1,9 @@
+sitio,descripcion,lat_2d,lon_2d,alt_gps_mediana_m,gw_referencia,dist_gw_min_km_medida,dist_gw_max_km_medida,perfil,sesiones,sesiones_validas
+LAB_BANCO,Laboratorio en Aguascalientes (gateway picaro-lab-ags-001) y alrededores,,,1918.0,picaro-lab-ags-001,0.0,0.9,"Pruebas estaticas a 0,0-0,5 km del gateway; entorno urbano, NLOS parcial (sombra de edificios, bitácora del proyecto)",1;2;3;17;29;30;31;32;33;34;35;37;38;39;44;45;46;50;53,2;3;17;29;30;31;32;33;34;35;39;50
+URBANO_MOVIL,Recorrido en vehiculo por la ciudad de Aguascalientes (sale del laboratorio),,,,picaro-lab-ags-001,0.0,4.0,"Movil, NLOS urbano; se aleja hasta ~6 km del gateway (EXPERIMENTO §5.4)",18;21;22;23;24;25;26;28,18;21;22;23;24;25;28
+TERRAZA,"Terraza de un piso 5, ciudad de Aguascalientes",,,1909.0,picaro-lab-ags-001,2.8,2.9,LoS desde ~15 m sobre el suelo; 60 % de Fresnel despejado salvo edificio de ~18 plantas en el punto medio (EXPERIMENTO §9.5),19;20;54,19;20;54
+CERRO16,Cima del Cerro del Muerto (Aguascalientes),21.88,-102.42,2274.0,picaro-lab-ags-001,15.2,15.2,"LoS con el 60 % de la 1.a zona de Fresnel despejado en todo el trayecto (perfil SRTM 30 m, perfil_cerro.csv)",41,41
+ITPA,"Campus del ITPA, Pabellon de Arteaga (gateways ITPA-IOT-GW00 y GW01-kibts)",22.16,-102.27,1906.0,ITPA-IOT-GW01-kibts,0.0,0.4,"Pruebas estaticas a < 0,2 km de los gateways del ITPA",40;57;58;59,40;57;58
+PUNTO_NE,Punto fijo ~12 km al NE del ITPA (posicion del telefono),,,,ITPA-IOT-GW01-kibts,12.3,12.3,Sin perfil de elevacion calculado,61;62;63;64;65;66,64
+MOVIL,Corrida VUELO en desplazamiento (posicion del telefono),,,,,0.1,2.7,Movil; no es punto fijo,55;56;60,
+SIN_POSICION,Sin fix de GPS ni posicion de telefono,,,,,,,Desconocido,15;16;27;36;42;43;47;48,36

@@ -1,0 +1,11 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  errors:
+    # No bloquear la compilacion por un TODO o un print de depuracion.
+    todo: ignore
+
+linter:
+  rules:
+    prefer_const_constructors: true
+    avoid_print: false

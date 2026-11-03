@@ -1,0 +1,7 @@
+# picaro-mapa — dependencias (Python 3.11+). Versiones fijadas, como picaro-campo.
+# sqlite3 viene con la stdlib.
+
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+paho-mqtt==2.1.0
+psycopg[binary]==3.2.3

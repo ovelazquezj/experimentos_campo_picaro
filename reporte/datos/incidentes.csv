@@ -1,0 +1,2 @@
+session_id,run_label,sonda,estado,inicio_local,fin_local,duracion_sesion_dias,uplinks_recibidos,ultimo_uplink_local,pings_encolados,pings_auto,pings_manual,pings_tras_ultimo_uplink,txack_emparejados,descripcion
+66,20261023-VUELO-A-2,radiosonda PiCARO (T3/LoRa32),aborted,2026-10-23 08:23:05,2026-11-02 11:13:22,10.12,17,2026-10-23 08:28:26,14526,14526,0,14521,5,"Sesion VUELO-A de la T3 que quedo abierta por error tras la prueba; el ciclo de ping del microservicio (1 cada 60 s, D-61) siguio encolando pings automaticos sin sonda. Excluida de downlinks.csv y latencias.csv."

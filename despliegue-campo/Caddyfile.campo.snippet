@@ -1,0 +1,20 @@
+# Caddyfile.campo.snippet — Bloque para el Caddy del stack de ChirpStack (§9).
+#
+# NO es un Caddyfile completo: es el bloque que hay que AÑADIR al Caddyfile de
+# <infra-privada>/picaro-chirpstack/caddy/Caddyfile. Caddy emite el certificado solo
+# (HTTP-01, puerto 80 ya abierto) y hace de pasarela también para el WebSocket
+# (reverse_proxy transporta el Upgrade sin configuración extra).
+#
+# Coherente con el resto de ese Caddyfile, que usa variables {$DOMAIN_*}. Requiere
+# exportar DOMAIN_CAMPO al contenedor de Caddy (ver README.md de esta carpeta).
+
+{$DOMAIN_CAMPO} {
+	reverse_proxy picaro-campo:8000
+}
+
+# Alternativa sin variable (si prefieres no tocar el entorno de Caddy): sustituye
+# el bloque de arriba por el dominio literal —
+#
+#   campo.pi-caro.org {
+#       reverse_proxy picaro-campo:8000
+#   }

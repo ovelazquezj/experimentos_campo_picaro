@@ -1,0 +1,113 @@
+# ============================================================================
+#  experimentos_campo_picaro — qué NO se versiona
+# ----------------------------------------------------------------------------
+#  El repo es privado, pero eso no basta: lo que entra al historial de git se
+#  queda ahí para siempre, y un repo privado puede ganar colaboradores o
+#  volverse público. Las credenciales van fuera y se reparten aparte.
+# ============================================================================
+
+# --- Credenciales -----------------------------------------------------------
+# Cada una tiene su .example al lado, versionado y sin secretos.
+firmware/credentials.json
+dashboard/config.json
+firmware_ttgo/TTGO_LoRaWAN_v3/credenciales.h
+firmware/main/credenciales_lorawan.h
+credenciales_lora32.h
+credenciales_lorawan.h
+# Posicion del laboratorio y EUIs reales (plantilla: sitios_privados.example.json)
+analisis/sitios_privados.json
+# IDs reales de ChirpStack y ruta del token (plantilla: ids_privados.example.json)
+servidor/ids_privados.json
+# Entornos con secretos (se versionan solo los .env.example)
+.env
+.env.*
+!.env.example
+# Firma de la app Android
+app/android/key.properties
+key.properties
+*.jks
+*.keystore
+
+# --- Build de la app Flutter ------------------------------------------------
+app/build/
+app/.dart_tool/
+
+# --- Datos crudos privados (versión pública anonimizada en reporte/datos) ---
+# Trazas GPS en torno al laboratorio, EUIs y metadatos del LNS: no se pueden
+# anonimizar sin destruirlos. Se quedan en local; en cada carpeta queda un
+# LEEME.md (versionado) que lo explica. El dataset público está en reporte/datos.
+analisis/datos_app/*
+!analisis/datos_app/LEEME.md
+analisis/datos_sd/*
+!analisis/datos_sd/LEEME.md
+analisis/datos_lns/*
+!analisis/datos_lns/LEEME.md
+analisis/resultados/*_cruzado.csv
+analisis/resultados/resumen.csv
+analisis/resultados/20260927_cerro/*
+!analisis/resultados/20260927_cerro/LEEME.md
+# Mapa de cobertura: trazas GPS y la estrella del gateway sobre ejes lat/lon
+analisis/resultados/figuras/5_mapa.png
+analisis/perfil_elevacion.csv
+caja_negra/*
+!caja_negra/LEEME.md
+campo/capturas_lns/*.jsonl
+
+# --- Generados por Python ---------------------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+
+# --- Build de ESP-IDF -------------------------------------------------------
+firmware/build/
+firmware/managed_components/
+firmware/sdkconfig
+firmware/sdkconfig.old
+firmware/dependencies.lock
+
+# --- Base de datos de trabajo del dashboard ---------------------------------
+# Cambia en cada ejecución y generaría ruido en cada commit. Los datos que
+# valgan se copian a datos/crudos/ como instantánea con nombre de corrida.
+dashboard/*.db
+dashboard/*.db-journal
+
+# --- Salidas temporales del análisis ----------------------------------------
+analisis/salida/
+
+# ============================================================================
+#  Lo que SÍ se versiona, aunque sean datos:
+#
+#    datos/crudos/       CSV descargados de la microSD, hojas de campo
+#                        exportadas, instantáneas de la SQLite por corrida
+#    datos/procesados/   salida de analisis/cruzar.py
+#    datos/graficas/     PNG generados por analisis/graficas.py
+#
+#  Son el resultado del experimento y la base de la memoria técnica: tienen
+#  que estar versionados y asociados al commit del firmware que los produjo.
+#
+#  EXCEPCIÓN: los datos crudos con trazas GPS en torno al laboratorio NO se
+#  versionan (ver la sección «Datos crudos privados» más arriba); la versión
+#  pública, anonimizada, está en reporte/datos.
+# ============================================================================
+
+# Cache del servidor de lenguaje (clangd)
+.cache/
+firmware/.cache/
+
+# --- Trabajo local del equipo (NO se versiona) ------------------------------
+# CR/SRS y documentos de traspaso para retomar en otra sesion. Local a proposito
+# (pueden referenciar detalles internos y son borradores de trabajo).
+/equipo/
+
+# --- Sonda T3 / LoRa32 (firmware_lora32) -----------------------------------
+firmware_lora32/main/credenciales_lora32.h
+firmware_lora32/build/
+firmware_lora32/managed_components/
+firmware_lora32/sdkconfig
+firmware_lora32/sdkconfig.old
+firmware_lora32/dependencies.lock
+
+# --- Mapa público -----------------------------------------------------------
+mapa-publico/.env
+mapa-publico/*.db
+.pytest_cache/

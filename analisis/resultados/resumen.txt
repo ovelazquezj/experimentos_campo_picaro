@@ -1,0 +1,53 @@
+RESUMEN DE CORRIDAS
+==============================================================================
+
+corrida                  env  aire    rx     PDR    RSSI    SNR  dist max  criterio
+------------------------------------------------------------------------------
+20260817-URBANO-A        300   300   153   51.0%   -90.9    7.6   3.54 km  NO (min 80%)
+                       [!] 1 paquetes en el servidor sin correspondencia en el log del dispositivo
+20260818-URBANO-A        300   300    10    3.3%  -126.4  -14.1   2.09 km  NO (min 80%)
+20260821-URBANO-A        164   164    30   18.3%  -101.0    4.8   4.02 km  NO (min 80%) / PARCIAL
+20260829-URBANO-A-2       30    30    29   96.7%  -101.4    7.9   0.26 km  cumple / PARCIAL
+                       [!] 1 paquetes en el servidor sin correspondencia en el log del dispositivo
+20260829-URBANO-A-3       35    35    34   97.1%   -89.0   11.5   0.32 km  cumple / PARCIAL
+                       [!] 1 paquetes en el servidor sin correspondencia en el log del dispositivo
+20260829-URBANO-A         32    32    32  100.0%   -71.3   11.6   0.12 km  cumple / PARCIAL
+                       [!] 1 paquetes en el servidor sin correspondencia en el log del dispositivo
+20260830-URBANO-A         33    33    32   97.0%   -72.2   11.8   0.23 km  cumple / PARCIAL
+                       [!] 1 paquetes en el servidor sin correspondencia en el log del dispositivo
+20260816-URBANO-C        300   300    87   29.0%  -112.3   -2.4   4.03 km  NO (min 80%)
+20260818-URBANO-C-2      261   261    62   23.8%   -90.6    5.6   6.06 km  NO (min 80%) / PARCIAL
+20260818-URBANO-C        300   300   103   34.3%  -100.5    3.7   2.40 km  NO (min 80%)
+20260821-URBANO-C-2       61    61    42   68.9%   -91.1    6.2   1.94 km  NO (min 80%) / PARCIAL
+20260821-URBANO-C         36    35     0    0.0%     n/d    n/d   3.34 km  NO (min 80%) / PARCIAL
+20260817-TERRAZA-C       300   298   199   66.8%  -116.5   -4.0   2.75 km  NO (min 80%)
+                       [!] 1 paquetes en el servidor sin correspondencia en el log del dispositivo
+
+PDR = recibidos / enviados_al_aire (excluye los fallos de TX del equipo).
+La columna 'env' incluye los intentos fallidos; su diferencia con 'aire'
+mide problemas del propio dispositivo, no de propagacion.
+
+INTENTOS MULTIPLES
+==============================================================================
+Alguna combinacion escenario/clase tiene mas de una corrida: se aborto
+con el boton y se reanudo. Todas estan arriba y en resumen.csv, pero el
+control de validez y las figuras usan la MAS COMPLETA de cada celda.
+No se han usado para comparar:
+  20260818-URBANO-A        intento 1   300 uplinks
+  20260821-URBANO-A        intento 1   164 uplinks
+  20260830-URBANO-A        intento 1    33 uplinks
+  20260829-URBANO-A        intento 1    32 uplinks
+  20260829-URBANO-A-2      intento 2    30 uplinks
+  20260829-URBANO-A-3      intento 3    35 uplinks
+  20260818-URBANO-C        intento 1   300 uplinks
+  20260821-URBANO-C        intento 1    36 uplinks
+  20260818-URBANO-C-2      intento 2   261 uplinks
+  20260821-URBANO-C-2      intento 2    61 uplinks
+
+CONTROL DE VALIDEZ  (clase A vs C en el mismo escenario)
+==============================================================================
+La clase no puede afectar al enlace de subida. Una diferencia real
+apunta a un problema de metodo. Alarma solo si p < 0.05 Y |delta| > 5 pp.
+
+  TERRAZA    INCOMPLETO — falta una de las dos clases
+  URBANO     PDR A=51.0% C=29.0%  delta=+22.0 pp  chi2=29.34  p=0.0000  -> REVISAR

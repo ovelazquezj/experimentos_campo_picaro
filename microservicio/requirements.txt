@@ -1,0 +1,12 @@
+# Microservicio de campo PiCARO — dependencias (Python 3.11+).
+# Versiones fijadas y estables (evita sorpresas en el despliegue del coordinador).
+# sqlite3 viene con la stdlib; no se lista.
+
+fastapi==0.115.6          # framework REST + WebSocket
+uvicorn[standard]==0.34.0 # servidor ASGI (incluye websockets y httptools)
+pydantic==2.10.4          # validacion de request (lo usa FastAPI)
+paho-mqtt==2.1.0          # ingesta MQTT desde ChirpStack (mismo que el dashboard)
+httpx==0.28.1             # cliente REST de ChirpStack (y lo usa TestClient)
+
+# --- Solo para desarrollo / tests ---
+pytest==8.3.4             # `python -m pytest` (usa fastapi.testclient)

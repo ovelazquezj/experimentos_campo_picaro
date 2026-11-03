@@ -1,0 +1,12 @@
+# Dependencias del analisis de las pruebas de terreno.
+#   pip install -r requirements.txt
+
+matplotlib>=3.5        # figuras (graficas.py)
+
+# scipy es OPCIONAL: solo se usa para el chi-cuadrado del control de validez.
+# Si no esta instalado, cruzar.py lo calcula por su cuenta (correccion de Yates
+# y p-valor por la funcion de supervivencia) y da el mismo resultado.
+scipy>=1.7
+
+# cruzar.py no necesita nada mas: usa csv, sqlite3 y math de la biblioteca
+# estandar. Se puede ejecutar sin instalar nada si solo quieres el resumen.

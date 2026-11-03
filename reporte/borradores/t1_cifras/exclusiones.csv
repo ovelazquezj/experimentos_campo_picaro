@@ -1,0 +1,5 @@
+motivo,sesiones,ids
+abortada con N < 30,19,15;16;27;38;42;43;45;46;47;48;53;55;56;59;60;61;62;65;66
+banco documentado con etiqueta de otro escenario,4,15;16;27;44
+repetida (abortada y rehecha el mismo dia),4,1;26;37;63
+incidente de la sesion 66,1,66

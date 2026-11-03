@@ -1,0 +1,17 @@
+{
+  "mode": "mqtt",
+  "mqtt": {
+    "host": "mqtt.pi-caro.org",
+    "port": 8883,
+    "tls": true,
+    "username": "TU_USUARIO_MQTT",
+    "password": "TU_CONTRASENA_MQTT"
+  },
+  "app_id": "<APP_ID>",
+  "dev_eui": "",
+  "db_path": "picaro_telemetry.db",
+  "default_window": "1 h",
+  "sim_period_s": 2.0,
+  "replay_period_s": 0.5,
+  "map_start": { "lat": 21.93, "lon": -102.30, "zoom": 13 }
+}

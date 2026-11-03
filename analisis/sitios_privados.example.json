@@ -1,0 +1,14 @@
+{
+  "_comentario": [
+    "Plantilla SIN datos reales. Copia este fichero a sitios_privados.json",
+    "(en .gitignore) y pon la posicion exacta del gateway del laboratorio y los",
+    "EUIs de las placas. Lo leen los scripts de analisis/ a traves de sitios.py."
+  ],
+  "gateway_laboratorio": { "lat": 21.92, "lon": -102.27 },
+  "eui": {
+    "tbeam": "0011223344550001",
+    "ttgo": "0011223344550003",
+    "gw_sensecap_lab": "00800000a0000001",
+    "gw_itpa_gw00": "00800000a0000002"
+  }
+}

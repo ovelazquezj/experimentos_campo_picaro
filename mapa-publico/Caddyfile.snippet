@@ -1,0 +1,27 @@
+# Bloques para el Caddyfile del stack de ChirpStack (sustituye el dominio).
+# El contenedor se llama picaro-mapa y escucha en la red interna en el 8000.
+
+pi-caro.org {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "geolocation=(), camera=(), microphone=()"
+		Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'"
+		-Server
+		# Revalidar siempre (ETag): sin esto el navegador mezcla un index.html nuevo
+		# con un app.css viejo de su cache. La API ya manda no-store.
+		?Cache-Control "no-cache"
+	}
+	# /salud es solo para diagnostico interno
+	respond /salud 404
+	# flush_interval -1: el SSE de /api/eventos no se bufferiza
+	reverse_proxy picaro-mapa:8000 {
+		flush_interval -1
+	}
+}
+
+www.pi-caro.org {
+	redir https://pi-caro.org{uri} permanent
+}

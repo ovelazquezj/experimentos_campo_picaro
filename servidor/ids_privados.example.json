@@ -1,0 +1,13 @@
+{
+  "_comentario": [
+    "Plantilla SIN datos reales. Copia este fichero a ids_privados.json (en",
+    ".gitignore) y pon los valores de tu ChirpStack. Lo lee privado.py."
+  ],
+  "token_file": "<ruta-a-tu-token-de-la-api-de-chirpstack>",
+  "dev_eui": "0011223344550001",
+  "perfiles": {
+    "ej09": "<PROFILE_ID_EJ09>",
+    "terreno-a": "<PROFILE_ID_TERRENO_A>",
+    "terreno-c": "<PROFILE_ID_TERRENO_C>"
+  }
+}

@@ -1,0 +1,46 @@
+# docker-compose.campo.yml — Despliegue del microservicio de campo (Opción A, §9).
+#
+# Compose SEPARADO del de ChirpStack (no lo modifica). El contenedor:
+#   · se une a la red externa `picaro` (la que ya creó el stack de ChirpStack),
+#   · escucha en el puerto INTERNO 8000, SIN publicarlo al host (no `ports:`),
+#   · monta un volumen para la SQLite,
+#   · lee las variables de un `.env` (ver ../microservicio/.env.example).
+#
+# Caddy (el del stack de ChirpStack) hace de pasarela HTTPS y WebSocket con el
+# bloque de Caddyfile.campo.snippet. No se abre ningún puerto en el firewall.
+
+name: picaro-campo
+
+services:
+  picaro-campo:
+    build: ../microservicio          # construye la imagen desde el Dockerfile
+    image: picaro-campo:latest
+    # container_name FIJO: es el nombre por el que Caddy lo alcanza en la red
+    # (`reverse_proxy picaro-campo:8000`). Si lo cambias, cambia también el snippet.
+    container_name: picaro-campo
+    restart: unless-stopped
+    env_file:
+      - .env                         # CAMPO_TOKEN, MQTT_*, CHIRPSTACK_*, GW_*, ...
+    environment:
+      # El volumen se monta en /data; la SQLite vive ahí y persiste reinicios.
+      - DB_PATH=/data/campo.db
+    volumes:
+      - campo-data:/data
+    # SIN `ports:` a propósito: el servicio NO se publica al host. Caddy lo
+    # alcanza por la red interna. `expose` es solo documentación entre contenedores.
+    expose:
+      - "8000"
+    networks:
+      - picaro
+
+networks:
+  # Red externa ya existente (la creó el compose de ChirpStack). Su nombre REAL
+  # suele ser `picaro-chirpstack_picaro` (proyecto `picaro-chirpstack` + red
+  # `picaro`). Confírmalo con `docker network ls | grep picaro` y, si difiere,
+  # sobreescribe con la variable PICARO_NETWORK en el `.env`.
+  picaro:
+    external: true
+    name: ${PICARO_NETWORK:-picaro-chirpstack_picaro}
+
+volumes:
+  campo-data:
